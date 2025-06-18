@@ -14,7 +14,7 @@ from typing import Dict, Any
 # ============================================================================
 # Set to "free" to use Free.json data
 # Set to "paid" to use paid.json data
-DATA_SOURCE = "free"  # Change this to "paid" when you want paid data
+DATA_SOURCE = "paid"  # Change this to "paid" when you want paid data
 # ============================================================================
 
 def load_json_file(filename: str) -> Dict[Any, Any]:
