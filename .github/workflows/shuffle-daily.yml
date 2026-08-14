@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Shuffle JSON (exclude 1st & 2nd category)
+      - name: Shuffle JSON data
         run: python shuffle_json.py
 
       - name: Commit and push if changed
