@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Shuffle JSON data daily:
-- Shuffles the order of categories.
+- Preserves the category order.
 - Shuffles the items within each category.
 - Formats JSON with 1 compact object per line for clean structure and low file size.
 """
@@ -16,14 +16,9 @@ def main():
     with open(JSON_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # 1. Shuffle category order
-    keys = list(data.keys())
-    random.shuffle(keys)
-
-    # 2. Shuffle items within each category
+    # Shuffle items within each category while keeping category order unchanged
     shuffled_data = {}
-    for key in keys:
-        items = data[key]
+    for key, items in data.items():
         if isinstance(items, list):
             items_copy = list(items)
             random.shuffle(items_copy)
@@ -53,7 +48,7 @@ def _write_compact(data):
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         f.writelines(lines)
 
-    print(f"Successfully shuffled {len(categories)} categories and their items!")
+    print(f"Successfully shuffled items inside all {len(categories)} categories (category order preserved)!")
 
 
 if __name__ == "__main__":
